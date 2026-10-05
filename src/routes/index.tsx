@@ -5,7 +5,7 @@ import { ArrowUpRight, ArrowRight, ArrowDown, MapPin, Menu, X, Code2, Users, Hea
 import { Button } from "@/components/ui/button";
 import { contactSchema } from "@/lib/contact-schema";
 import { sendContactMessage } from "@/lib/contact.functions";
-import silhouette from "@/assets/cinematic-silhouette.jpg";
+import portrait from "@/assets/nohith-portrait.png.asset.json";
 import vision from "@/assets/vision-project.jpg";
 import iot from "@/assets/iot-project.jpg";
 
@@ -48,7 +48,7 @@ function Portfolio() {
  </div>{menuOpen && <nav className="mobile-menu" aria-label="Mobile navigation">{navigation.map(n => <Link to="/" hash={n.toLowerCase()} key={n} onClick={() => setMenuOpen(false)}>{n}</Link>)}</nav>}</header>
  <main>
  <section className="hero" id="home">
-  <img className="hero-photo" src={silhouette} alt="Anonymous cinematic silhouette with warm rim lighting" width={1920} height={1088} fetchPriority="high" />
+  <img className="hero-photo" src={portrait.url} alt="Nohith Raj K — cinematic portrait with warm red rim lighting" width={1024} height={1536} fetchPriority="high" />
   <div className="hero-fade" /><div className="shell hero-content"><div className="hero-grid">
    <div className="hero-intro reveal"><Eyebrow>Hello, I'm</Eyebrow><h1>Nohith<br />Raj<span className="initial"> K.</span></h1>
     <p className="role-line">COMPUTER SCIENCE GRADUATE · BUSINESS SALES EXECUTIVE<br />TECHNICAL SUPPORT · TECHNOLOGY & AUTOMATION ENTHUSIAST</p>
