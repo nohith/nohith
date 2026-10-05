@@ -1,24 +1,86 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useServerFn } from "@tanstack/react-start";
+import { useEffect, useState, type FormEvent } from "react";
+import { ArrowUpRight, ArrowRight, ArrowDown, MapPin, Menu, X, Code2, Users, Headphones, BriefcaseBusiness, Check, Cpu, ScanFace, Mail, Phone, Send, Loader2, MoveUpRight, Lightbulb, Handshake } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { contactSchema } from "@/lib/contact-schema";
+import { sendContactMessage } from "@/lib/contact.functions";
+import silhouette from "@/assets/cinematic-silhouette.jpg";
+import vision from "@/assets/vision-project.jpg";
+import iot from "@/assets/iot-project.jpg";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+ head: () => ({ meta: [
+  { title: "Nohith Raj K — Technology, People & Business" },
+  { name: "description", content: "Explore Nohith Raj K's portfolio: Computer Science graduate, CODULAR Business Sales Executive, technical support, Python, automation, computer vision and IoT." },
+  { property: "og:title", content: "Nohith Raj K — Technology, People & Business" },
+  { property: "og:description", content: "Technical thinking. Human connection. Discover Nohith's experience, expertise and practical technology projects." },
+  { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
+ ] }), component: Portfolio,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+const navigation = ["Home", "About", "Education", "Experience", "Skills", "Services", "Projects", "Contact"];
+const technicalSkills = ["Python", "Linux", "SQL", "Advanced Excel", "Microsoft Office", "PowerPoint", "Image Processing", "Data Analysis", "Embedded Systems", "Automation Technologies"];
+const professionalSkills = ["Communication", "Negotiation", "Technical Support", "Sales Consulting", "Problem Solving", "Quick Learning", "Client Interaction"];
+const education = [
+ { year: "2016 — 2020", title: "Bachelor of Technology", area: "Computer Science", school: "GITAM University, Bengaluru", score: "7.95 / 10", label: "CGPA" },
+ { year: "2014 — 2016", title: "Pre-University Course", area: "PCMB", school: "Vidyadri PU College, Vijaypur", score: "72.16%", label: "Percentage" },
+ { year: "2014", title: "Secondary School", area: "", school: "The Crescent School, Sidlaghatta", score: "85.6%", label: "Percentage" },
+];
+function Eyebrow({ children }: { children: React.ReactNode }) { return <div className="eyebrow">{children}</div>; }
+function BulletList({ items }: { items: string[] }) { return <ul className="bullet-list">{items.map(item => <li key={item}><Check size={12} />{item}</li>)}</ul>; }
+function SectionTitle({ label, title, soft, description }: { label: string; title: string; soft?: string; description?: string }) { return <div className="section-top"><div><Eyebrow>{label}</Eyebrow><h2 className="section-heading">{title}{soft && <><br /><span className="soft">{soft}</span></>}</h2></div>{description && <p>{description}</p>}</div>; }
+function Portfolio() {
+ const [menuOpen, setMenuOpen] = useState(false);
+ const [scrolled, setScrolled] = useState(false);
+ const [active, setActive] = useState("Home");
+ useEffect(() => {
+  const onScroll = () => setScrolled(window.scrollY > 35); onScroll(); window.addEventListener("scroll", onScroll, { passive: true });
+  const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("in-view"); const name = navigation.find(n => n.toLowerCase() === entry.target.id); if (name) setActive(name); } }); }, { rootMargin: "-15% 0px -55% 0px", threshold: 0 });
+  document.querySelectorAll("section[id]").forEach(section => observer.observe(section));
+  return () => { window.removeEventListener("scroll", onScroll); observer.disconnect(); };
+ }, []);
+ return <>
+ <header className={`site-nav ${scrolled ? "scrolled" : ""}`}><div className="shell nav-inner">
+  <Link to="/" hash="home" className="wordmark" aria-label="Nohith Raj home">Nohith<span>.</span></Link>
+  <nav className="nav-links" aria-label="Main navigation">{navigation.map(n => <Link to="/" hash={n.toLowerCase()} key={n} className={active === n ? "active" : ""}>{n}</Link>)}</nav>
+  <Button asChild variant="nav" className="nav-contact"><Link to="/" hash="contact">Let's talk <span className="arrow-disc"><ArrowUpRight size={13} /></span></Link></Button>
+  <Button variant="ghost" size="icon" className="menu-toggle" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button>
+ </div>{menuOpen && <nav className="mobile-menu" aria-label="Mobile navigation">{navigation.map(n => <Link to="/" hash={n.toLowerCase()} key={n} onClick={() => setMenuOpen(false)}>{n}</Link>)}</nav>}</header>
+ <main>
+ <section className="hero" id="home">
+  <img className="hero-photo" src={silhouette} alt="Anonymous cinematic silhouette with warm rim lighting" width={1920} height={1088} fetchPriority="high" />
+  <div className="hero-fade" /><div className="shell hero-content"><div className="hero-grid">
+   <div className="hero-intro reveal"><Eyebrow>Hello, I'm</Eyebrow><h1>Nohith<br />Raj<span className="initial"> K.</span></h1>
+    <p className="role-line">COMPUTER SCIENCE GRADUATE · BUSINESS SALES EXECUTIVE<br />TECHNICAL SUPPORT · TECHNOLOGY & AUTOMATION ENTHUSIAST</p>
+    <p className="hero-copy">A technical mind. A people-first perspective.<br />Bringing together Python, Linux, SQL, automation and hands-on problem-solving to connect technology with real business needs.</p>
+    <div className="hero-actions"><Button asChild variant="cinematic"><Link to="/" hash="projects">View My Work <ArrowUpRight /></Link></Button><Button asChild variant="cinematicOutline"><Link to="/" hash="contact">Let's Connect <ArrowRight /></Link></Button></div>
+   </div>
+   <div className="hero-statement reveal"><h2>Technical thinking.<br />Human connection.<br /><span className="soft">Meaningful impact.</span></h2><p>From technical challenges to client conversations — turning understanding into practical solutions.</p><div className="hero-location"><MapPin size={12} /> Bengaluru, India</div></div>
+  </div><div className="hero-bottom">{["Technical Problem Solving", "Sales & Consulting", "Automation & IoT", "Computer Vision"].map((s,i) => <div className="hero-discipline" key={s}><span>0{i+1}</span>{s}</div>)}<Link to="/" hash="about" className="hero-scroll">SCROLL TO EXPLORE <ArrowDown size={14} /></Link></div></div>
+ </section>
+ <section id="about" className="section"><div className="shell about-grid"><div><Eyebrow>01 / The person behind the work</Eyebrow><h2 className="section-heading">Built on curiosity.<br /><span className="soft">Driven by possibility.</span></h2><p className="about-text">I'm <strong>Nohith Raj K</strong>, a Computer Science graduate who enjoys working where <strong>technology meets people.</strong> My experience in business sales and technical support gives me a practical perspective on both technical challenges and client needs.</p><p className="about-text">From image processing and embedded systems to data analysis and automation, I bring an analytical mindset, clear communication and a willingness to learn to every challenge.</p><div className="about-tags">{["Problem-solving", "Adaptability", "System monitoring", "Quick learning"].map(s => <span className="tag" key={s}>{s}</span>)}</div></div><div><div className="mini-label">A little about me</div><dl className="personal-info">{[["Name","Nohith Raj K"],["Based in","Bengaluru, India"],["Date of birth","16 April 1998"],["Degree","B.Tech — Computer Science"],["University","GITAM University, Bengaluru"]].map(([k,v]) => <div key={k}><dt>{k}</dt><dd>{v}</dd></div>)}</dl><p className="soft mt-7 text-xs">Technical foundation. Business understanding.<br />Always learning. Always moving forward.</p></div></div></section>
+ <section id="education" className="section"><div className="shell"><SectionTitle label="02 / The foundation" title="A foundation for" soft="what comes next." description="An academic journey rooted in science, analytical thinking and computer technology." /><div className="education-list">{education.map(e => <article className="education-item" key={e.title}><span className="timeline-dot" /><div className="education-date">{e.year}</div><h3>{e.title}{e.area && <><br /><span className="soft">{e.area}</span></>}</h3><p>{e.school}</p><div className="education-score"><span>{e.label}</span> &nbsp; {e.score}</div></article>)}</div></div></section>
+ <section id="experience" className="section"><div className="shell"><SectionTitle label="03 / Professional experience" title="Where technology" soft="meets opportunity." /><div className="experience-grid"><div><h3 className="company-name">CODULAR<span className="text-primary">.</span></h3><p className="mini-label mt-4">Full-time</p><p className="soft text-xs mt-3">Technical Support &<br />Business Sales Operations</p></div><div className="experience-main"><h3>Business Sales Executive</h3><p>A bridge between client acquisition, technical requirements and commercial execution — helping turn technical conversations into business opportunities.</p><BulletList items={["Managing and scaling sales operations", "Qualifying incoming technical inquiries", "Understanding client requirements", "Communicating product capabilities", "Connecting requirements with technical execution", "Streamlining internal sales workflows", "Building sustainable client relationships", "Converting conversations into opportunities"]} /></div></div><div className="process-strip"><div className="process-step"><Users size={19} />Client discovery</div><ArrowRight size={15} /><div className="process-step"><Headphones size={19} />Technical consultation</div><ArrowRight size={15} /><div className="process-step"><Lightbulb size={19} />Solution alignment</div><ArrowRight size={15} /><div className="process-step"><Handshake size={19} />Client success</div></div></div></section>
+ <section id="skills" className="section"><div className="shell"><SectionTitle label="04 / Skills & expertise" title="A versatile toolkit." soft="A focused mindset." description="Technical capabilities complemented by the communication skills to make them count." /><div className="skills-grid"><div><h3 className="skill-group-title"><Code2 size={21} />Technical skills</h3><div className="skill-badges">{technicalSkills.map(s => <span className="skill-badge" key={s}>{s}</span>)}</div></div><div><h3 className="skill-group-title"><Users size={21} />Professional skills</h3><div className="skill-badges">{professionalSkills.map(s => <span className="skill-badge" key={s}>{s}</span>)}</div></div></div></div></section>
+ <section id="services" className="section"><div className="shell"><SectionTitle label="05 / How I can help" title="Practical support." soft="Real-world perspective." /><div className="services-grid"><article className="service-card"><div className="service-top"><BriefcaseBusiness size={30} strokeWidth={1.4} /><span className="service-number">01 / CONSULTING</span></div><h3>Sales Consulting</h3><p>Connecting business requirements with technical capabilities through clear, thoughtful consultation.</p><BulletList items={["Technical sales consultation", "Client requirement analysis", "Product & service explanation", "Sales workflow support", "Technical-to-business communication", "Prospect qualification"]} /></article><article className="service-card"><div className="service-top"><Headphones size={30} strokeWidth={1.4} /><span className="service-number">02 / SUPPORT</span></div><h3>Technical Support</h3><p>Understanding technical problems and communicating practical solutions with clarity and confidence.</p><BulletList items={["Technical issue analysis", "System troubleshooting", "Technical inquiry handling", "Product capability guidance", "System monitoring", "Client-facing technical assistance"]} /></article></div></div></section>
+ <section id="projects" className="section"><div className="shell"><SectionTitle label="06 / Selected work" title="Ideas, put into practice." description="Exploring computer vision and connected systems through hands-on technology projects." /><div className="projects-grid"><ProjectCard image={vision} number="01" category="Computer vision" title="Face Recognition & Emotion Detection" description="Developed a face recognition and emotion detection system using image-processing techniques to identify facial patterns and classify emotional expressions from visual inputs." tags={["Image Processing", "Computer Vision", "Pattern Recognition", "Facial Analysis", "Emotion Classification", "Real-Time Detection"]} contributions={["Applied computer-vision concepts to facial pattern identification.", "Used image-processing techniques to analyze visual inputs.", "Classified emotional expressions through facial analysis."]} /><ProjectCard image={iot} number="02" category="IoT & embedded systems" title="IoT-Based Crop Field Monitoring System" description="Designed an Arduino-based agricultural monitoring solution with an alert mechanism to help farmers detect and prevent animal intrusion in crop fields." tags={["Arduino", "IoT", "Sensor Integration", "Automation", "Real-Time Monitoring", "Alert Systems", "Embedded Systems", "Agricultural Technology"]} contributions={["Designed and implemented an Arduino-based monitoring solution.", "Integrated sensors for detecting crop-field intrusion.", "Built an alert mechanism to support timely action."]} /></div><p className="project-note">Conceptual project visuals · Illustrative representations of the technology, not screenshots of the implementations.</p></div></section>
+ <section id="journey" className="section journey"><div className="shell"><Eyebrow>07 / A connected perspective</Eyebrow><h2 className="section-heading">Connecting Technology,<br /><span className="soft">People & Business.</span></h2><div className="journey-flow"><div className="journey-node"><Cpu size={28} strokeWidth={1.3} /><h3>Technology</h3><p>Python · Linux · SQL<br />Automation · Computer Vision</p></div><ArrowRight size={25} /><div className="journey-node"><ScanFace size={28} strokeWidth={1.3} /><h3>Problem Solving</h3><p>Analysis · Troubleshooting<br />System Monitoring · Adaptability</p></div><ArrowRight size={25} /><div className="journey-node"><BriefcaseBusiness size={28} strokeWidth={1.3} /><h3>Business</h3><p>Sales · Negotiation · Client Communication<br />Technical Consulting</p></div></div><p className="journey-outro">Understanding the technology is only part of the equation. I connect the dots — translating technical concepts into clear conversations and practical business solutions.</p></div></section>
+ <section id="contact" className="section"><div className="shell contact-grid"><div><Eyebrow>08 / Start a conversation</Eyebrow><h2 className="contact-heading">Let's Build<br />Something<br /><span className="soft">Meaningful.</span></h2><p className="contact-copy">An opportunity, a technical project or a new collaboration — I'd love to hear about it. Let's talk sales consulting, technical support and what's next.</p><div className="contact-links"><a href="mailto:nohithraj89@gmail.com"><Mail size={17} />nohithraj89@gmail.com <ArrowUpRight size={13} /></a><a href="tel:+918217743238"><Phone size={17} />+91 82177 43238</a><p><MapPin size={17} />Bengaluru, India</p></div><Button asChild variant="cinematicOutline"><a href="mailto:nohithraj89@gmail.com">Contact Me <ArrowUpRight /></a></Button></div><ContactForm /></div></section>
+ </main><footer className="site-footer"><div className="shell"><div className="footer-top"><div><Link to="/" hash="home" className="wordmark">Nohith Raj K<span>.</span></Link><p>Computer Science Graduate · Technical Support · Sales Consulting · Technology Enthusiast</p></div><Link to="/" hash="home">Back to top <MoveUpRight size={16} /></Link></div><div className="footer-bottom"><span>© 2026 Nohith Raj K. All rights reserved.</span><span>Technology. People. Possibility.</span></div></div></footer>
+ </>;
+}
+function ProjectCard({ image, number, category, title, description, tags, contributions }: { image: string; number: string; category: string; title: string; description: string; tags: string[]; contributions: string[] }) { return <article className="project-card"><div className="project-visual"><img src={image} alt={`${title} — conceptual technology preview`} width={1280} height={800} loading="lazy" /><span className="project-status"><span className="status-dot" />Concept preview</span></div><div className="project-body"><div className="project-meta"><span>Project {number}</span><span>{category}</span></div><h3>{title}</h3><p>{description}</p><div className="project-tags">{tags.map(t => <span className="tag" key={t}>{t}</span>)}</div><details className="project-detail"><summary>Key contributions</summary><ul>{contributions.map(c => <li key={c}>{c}</li>)}</ul></details></div></article>; }
+function ContactForm() {
+ const send = useServerFn(sendContactMessage);
+ const [pending, setPending] = useState(false);
+ const [status, setStatus] = useState<{ success: boolean; message: string } | null>(null);
+ async function submit(event: FormEvent<HTMLFormElement>) {
+  event.preventDefault(); const form = event.currentTarget; const data = Object.fromEntries(new FormData(form)); const parsed = contactSchema.safeParse(data);
+  if (!parsed.success) { setStatus({ success: false, message: parsed.error.issues[0]?.message ?? "Please check your details." }); return; }
+  setPending(true); setStatus(null);
+  try { const result = await send({ data: parsed.data }); setStatus(result); if (result.success) form.reset(); }
+  catch { setStatus({ success: false, message: "Your message couldn't be saved. Please try again or email me directly." }); }
+  finally { setPending(false); }
+ }
+ return <form className="contact-form" onSubmit={submit}><div className="form-row"><div className="field"><label htmlFor="name">Your name</label><input id="name" name="name" placeholder="John Doe" autoComplete="name" required maxLength={100} /></div><div className="field"><label htmlFor="email">Email address</label><input id="email" name="email" type="email" placeholder="john@company.com" autoComplete="email" required maxLength={255} /></div></div><div className="field"><label htmlFor="subject">Subject</label><input id="subject" name="subject" placeholder="What's on your mind?" required maxLength={150} /></div><div className="field"><label htmlFor="message">Your message</label><textarea id="message" name="message" placeholder="Tell me a little about your project or opportunity..." rows={5} required maxLength={3000} /></div><div className="honeypot" aria-hidden="true"><label htmlFor="website">Website</label><input id="website" name="website" tabIndex={-1} autoComplete="off" /></div>{status && <p role="status" className={`form-status ${status.success ? "" : "error"}`}>{status.message}</p>}<div className="form-footer"><span>A good conversation can be the start of something great.</span><Button variant="cinematic" type="submit" disabled={pending}>{pending ? <>Sending <Loader2 className="animate-spin" /></> : <>Send Message <Send size={15} /></>}</Button></div></form>;
 }
