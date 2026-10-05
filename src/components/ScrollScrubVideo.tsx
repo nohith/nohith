@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
-import showreel from "@/assets/nohith-showreel.mp4.asset.json";
+import showreelMp4 from "@/assets/nohith-showreel.mp4.asset.json";
+import showreelWebm from "@/assets/nohith-showreel.webm.asset.json";
 
 /**
  * Scroll-scrubbed video: the playhead follows scroll progress through a tall
@@ -68,12 +69,14 @@ export function ScrollScrubVideo() {
         <div className="scrub-frame">
           <video
             ref={videoRef}
-            src={showreel.url}
             muted
             playsInline
             preload="auto"
             disablePictureInPicture
-          />
+          >
+            <source src={showreelWebm.url} type="video/webm" />
+            <source src={showreelMp4.url} type="video/mp4" />
+          </video>
           <div className="scrub-vignette" />
         </div>
         <div className="scrub-caption" ref={captionRef}>
