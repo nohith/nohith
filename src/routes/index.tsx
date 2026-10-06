@@ -47,8 +47,9 @@ function Portfolio() {
   <Button variant="ghost" size="icon" className="menu-toggle" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button>
  </div>{menuOpen && <nav className="mobile-menu" aria-label="Mobile navigation">{navigation.map(n => <Link to="/" hash={n.toLowerCase()} key={n} onClick={() => setMenuOpen(false)}>{n}</Link>)}</nav>}</header>
  <main>
+ <img className="hero-photo" src={portrait.url} alt="Nohith Raj K — cinematic portrait with warm red rim lighting" width={1672} height={940} fetchPriority="high" />
+ <div className="hero-shade" />
  <section className="hero" id="home">
-  <img className="hero-photo" src={portrait.url} alt="Nohith Raj K — cinematic portrait with warm red rim lighting" width={1672} height={940} fetchPriority="high" />
   <div className="hero-fade" /><div className="shell hero-content"><div className="hero-grid">
    <div className="hero-intro reveal"><Eyebrow>Hello, I'm</Eyebrow><h1>Nohith<br />Raj<span className="initial"> K.</span></h1>
     <p className="role-line">COMPUTER SCIENCE GRADUATE · BUSINESS SALES EXECUTIVE<br />TECHNICAL SUPPORT · TECHNOLOGY & AUTOMATION ENTHUSIAST</p>
