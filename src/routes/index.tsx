@@ -22,7 +22,7 @@ const navigation = ["Home", "About", "Education", "Experience", "Skills", "Servi
 const technicalSkills = ["Python", "Linux", "SQL", "Advanced Excel", "Microsoft Office", "PowerPoint", "Image Processing", "Data Analysis", "Embedded Systems", "Automation Technologies"];
 const professionalSkills = ["Communication", "Negotiation", "Technical Support", "Sales Consulting", "Problem Solving", "Quick Learning", "Client Interaction"];
 const education = [
- { year: "2016 — 2020", title: "Bachelor of Technology", area: "Computer Science", school: "GITAM University, Bengaluru", score: "7.95 / 10", label: "CGPA" },
+ { year: "2016 — 2020", title: "Bachelor of Technology", area: "Computer Science", school: "GITAM University, Bengaluru", score: "7 / 10", label: "CGPA" },
  { year: "2014 — 2016", title: "Pre-University Course", area: "PCMB", school: "Vidyadri PU College, Vijaypur", score: "72.16%", label: "Percentage" },
  { year: "2014", title: "Secondary School", area: "", school: "The Crescent School, Sidlaghatta", score: "85.6%", label: "Percentage" },
 ];
