@@ -22,7 +22,7 @@
  --accent: oklch(.27 .01 260); --border: oklch(.95 .01 260 / 13%); --destructive: oklch(.68 .17 25);
  --cool: oklch(.75 .065 220); --green: oklch(.72 .08 150);
  --nav-surface: oklch(.135 .004 260 / 83%);
- --hero-shade: linear-gradient(90deg,oklch(.10 .004 260 / 65%),transparent 58%,oklch(.10 .004 260 / 22%));
+ --hero-shade: linear-gradient(90deg,oklch(.10 .004 260 / 70%),transparent 58%,oklch(.10 .004 260 / 38%)),linear-gradient(oklch(.135 .004 260 / 28%),oklch(.135 .004 260 / 28%));
  --hero-bottom: linear-gradient(0deg,var(--background),transparent);
  --shadow: 0 16px 48px oklch(0 0 0 / 20%);
 }
