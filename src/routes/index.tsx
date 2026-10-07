@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useServerFn } from "@tanstack/react-start";
 import { useEffect, useState, type FormEvent } from "react";
-import { ArrowUpRight, ArrowRight, ArrowDown, MapPin, Menu, X, Code2, Users, Headphones, BriefcaseBusiness, Check, Cpu, ScanFace, Mail, Phone, Send, Loader2, MoveUpRight, Lightbulb, Handshake, AppWindow, ReceiptText, Smartphone, Server, SlidersHorizontal, Layers, Workflow } from "lucide-react";
+import { ArrowUpRight, ArrowRight, ArrowDown, MapPin, Menu, X, Code2, Users, Headphones, BriefcaseBusiness, Check, Cpu, ScanFace, Mail, Phone, Send, Loader2, MoveUpRight, Lightbulb, Handshake, AppWindow, ReceiptText, Smartphone, Server, SlidersHorizontal, Layers, Workflow, Linkedin, Github, Instagram, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { contactSchema } from "@/lib/contact-schema";
 import { sendContactMessage } from "@/lib/contact.functions";
@@ -21,6 +21,14 @@ export const Route = createFileRoute("/")({
 const navigation = ["Home", "About", "Education", "Experience", "Skills", "Services", "Solutions", "Projects", "Contact"];
 const technicalSkills = ["Python", "Linux", "SQL", "Advanced Excel", "Microsoft Office", "PowerPoint", "Image Processing", "Data Analysis", "Embedded Systems", "Automation Technologies"];
 const professionalSkills = ["Communication", "Negotiation", "Technical Support", "Sales Consulting", "Problem Solving", "Quick Learning", "Client Interaction"];
+function XIcon({ size = 16 }: { size?: number }) { return <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>; }
+const socialLinks = [
+ { label: "LinkedIn", href: "https://www.linkedin.com/in/nohith-raj-7b0ba4189", Icon: Linkedin },
+ { label: "GitHub", href: "https://github.com/nohith", Icon: Github },
+ { label: "Instagram", href: "https://www.instagram.com/nohith_rajuuu", Icon: Instagram },
+ { label: "X (Twitter)", href: "https://x.com/nohith4", Icon: XIcon },
+ { label: "YouTube", href: "https://youtube.com/@nohithraj3684", Icon: Youtube },
+];
 const education = [
  { year: "2016 — 2020", title: "Bachelor of Technology", area: "Computer Science", school: "GITAM University, Bengaluru", score: "7 / 10", label: "CGPA" },
  { year: "2014 — 2016", title: "Pre-University Course", area: "PCMB", school: "Vidyadri PU College, Vijaypur", score: "72.16%", label: "Percentage" },
