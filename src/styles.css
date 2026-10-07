@@ -77,3 +77,13 @@ h1,h2,h3,h4,p{margin:0}h1,h2,h3,h4{font-family:var(--font-display);line-height:1
 .footer-social{display:flex;gap:10px;margin-top:18px}
 .footer-social a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--border);border-radius:5px;color:var(--muted-foreground);background:var(--card);transition:color .25s,border-color .25s,transform .25s}
 .footer-social a:hover{color:var(--primary);border-color:color-mix(in oklch,var(--primary),transparent 45%);transform:translateY(-2px)}
+
+.advisor-fab{position:fixed;right:18px;bottom:18px;z-index:60;width:48px;height:48px;border-radius:999px;display:grid;place-items:center;background:var(--card);color:var(--foreground);border:1px solid var(--border);box-shadow:0 10px 30px oklch(0 0 0/.5)}
+.advisor-panel{position:fixed;left:12px;right:12px;bottom:76px;z-index:60;max-height:75vh;overflow:auto;padding:18px;border-radius:18px;background:color-mix(in oklch,var(--card) 92%,transparent);backdrop-filter:blur(16px);border:1px solid var(--border);display:flex;flex-direction:column;gap:10px;color:var(--foreground)}
+.advisor-head{display:flex;justify-content:space-between;align-items:center}
+.advisor-sub,.advisor-meta{font-size:13px;color:var(--muted-foreground);margin:0}
+.advisor-panel label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--muted-foreground)}
+.advisor-panel select,.advisor-panel input:not([type=checkbox]){background:var(--background);color:var(--foreground);border:1px solid var(--border);border-radius:10px;padding:9px}
+.advisor-panel .advisor-check{flex-direction:row;align-items:center;gap:8px}
+.advisor-error{color:var(--destructive);font-size:13px;margin:0}
+.advisor-tips{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px}
