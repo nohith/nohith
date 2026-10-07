@@ -72,3 +72,8 @@ h1,h2,h3,h4,p{margin:0}h1,h2,h3,h4{font-family:var(--font-display);line-height:1
 @media(max-width:1100px){.solutions-panel{padding:45px 35px}.solutions-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:800px){.solutions-panel{padding:35px 28px}}
 @media(max-width:580px){.solutions-grid,.why-grid{grid-template-columns:1fr;gap:18px}.solutions-panel{padding:28px 22px}}
+
+/* Footer social links */
+.footer-social{display:flex;gap:10px;margin-top:18px}
+.footer-social a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--border);border-radius:5px;color:var(--muted-foreground);background:var(--card);transition:color .25s,border-color .25s,transform .25s}
+.footer-social a:hover{color:var(--primary);border-color:color-mix(in oklch,var(--primary),transparent 45%);transform:translateY(-2px)}
