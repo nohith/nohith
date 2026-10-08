@@ -14,3 +14,4 @@
 - Define cinematic visuals and motion in the global semantic design system so all portfolio sections share one identity.
 - Contact messages use a validated public server function and a private Cloud table; visitors cannot read submissions.
 - Generated project photographs are conceptual previews, never evidence of the actual implementations or the owner's identity.
+- MCP server is public (no auth) by explicit owner choice; it serves only hardcoded public portfolio data from src/lib/mcp/profile.ts and never touches the database.
