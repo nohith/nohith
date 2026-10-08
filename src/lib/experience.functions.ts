@@ -13,7 +13,7 @@ const schema = z.object({
 export const getExperienceTips = createServerFn({ method: "POST" })
   .inputValidator((d: unknown) => schema.parse(d))
   .handler(async ({ data }) => {
-    const key = process.env.LOVABLE_API_KEY;
+    const key = process.env["LOVABLE_API_KEY"];
     if (!key) return { ok: false as const, error: "AI is not configured." };
     const res = await fetch("https://ai.gateway.lovable.dev/v1/responses", {
       method: "POST",
