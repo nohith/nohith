@@ -28,7 +28,7 @@ const socialLinks = [
  { label: "GitHub", href: "https://github.com/nohith", Icon: Github },
  { label: "Instagram", href: "https://www.instagram.com/nohith_rajuuu", Icon: Instagram },
  { label: "X (Twitter)", href: "https://x.com/nohith4", Icon: XIcon },
- { label: "YouTube", href: "https://youtube.com/@nohithraj3684", Icon: Youtube },
+ { label: "YouTube", href: "https://www.youtube.com/@nohithraj3684", Icon: Youtube },
 ];
 const education = [
  { year: "2016 — 2020", title: "Bachelor of Technology", area: "Computer Science", school: "GITAM University, Bengaluru", score: "7 / 10", label: "CGPA" },
