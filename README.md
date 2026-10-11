@@ -1,4 +1,4 @@
-# Nohith Raj Portfolio
+
 
 take this image as an example Create a modern, premium, dark/cinematic personal portfolio website for Nohith Raj, a Computer Science graduate and technical professional with experience spanning business sales, technical support, Python, automation-oriented technologies, data analysis, and computer-vision projects.
 
@@ -382,14 +382,6 @@ with copyright information and available professional/social links.
 This project was built with [Lovable](https://lovable.dev).
 
 **Live app**: https://nohith.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/df93eca1-9808-4544-82d1-2b3575ecbf1a).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
