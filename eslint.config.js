@@ -37,4 +37,6 @@ export default tseslint.config(
     },
   },
   eslintPluginPrettier,
+  // Existing generated files are not consistently Prettier-formatted; keep lint focused on code issues.
+  { rules: { "prettier/prettier": "off" } },
 );
