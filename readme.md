@@ -50,7 +50,7 @@ An Arduino-based agricultural monitoring concept designed to help detect animal 
 
 ## Experience
 
-**Business Sales Executive — CODULAR**  
+**Business Sales Executive — GLOBE INFOTECH PRIVATE LIMITED**  
 *Full-time · Technical Support & Business Sales Operations*
 
 My role connects client acquisition with technical understanding and commercial execution. Key areas include qualifying technical inquiries, understanding client requirements, explaining product capabilities, supporting sales workflows, and helping turn technical conversations into business opportunities.
