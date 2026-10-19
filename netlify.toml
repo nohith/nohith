@@ -1,0 +1,12 @@
+[build]
+  command = "bun run build"
+  publish = "dist"
+
+[build.environment]
+  # The repository's shared Vite config defaults Nitro to Cloudflare.
+  # Override that default for this Netlify deployment so server routes and
+  # TanStack Start server functions are packaged for Netlify.
+  NITRO_PRESET = "netlify"
+
+[functions]
+  node_bundler = "esbuild"
