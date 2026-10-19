@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { contactSchema } from "./contact-schema";
 
-// EmailJS public identifiers — designed to be exposed client-side, safe in code.
+// EmailJS public identifiers are intended to be exposed to the browser.
 const EMAILJS_SERVICE_ID = "service_flkiytg";
 const EMAILJS_TEMPLATE_ID = "template_v5odzmn";
 const EMAILJS_PUBLIC_KEY = "ZRVWwcqWeJf3WvTXd";
@@ -9,12 +9,23 @@ const EMAILJS_PUBLIC_KEY = "ZRVWwcqWeJf3WvTXd";
 export const sendContactMessage = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => contactSchema.parse(input))
   .handler(async ({ data }) => {
-    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-    const { error } = await supabaseAdmin.from("contact_submissions").insert({
-      name: data.name, email: data.email, subject: data.subject, message: data.message,
-    });
-
+    let saved = false;
     let emailed = false;
+
+    try {
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      const { error } = await supabaseAdmin.from("contact_submissions").insert({
+        name: data.name,
+        email: data.email,
+        subject: data.subject,
+        message: data.message,
+      });
+      if (error) console.error("Contact submission could not be saved:", error.message);
+      else saved = true;
+    } catch (error) {
+      console.error("Contact submission database error:", error);
+    }
+
     try {
       const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
         method: "POST",
@@ -35,13 +46,28 @@ export const sendContactMessage = createServerFn({ method: "POST" })
         }),
       });
       if (response.ok) emailed = true;
-      else console.error("EmailJS send failed:", response.status, await response.text());
+      else console.error("EmailJS send failed:", response.status);
     } catch (error) {
       console.error("EmailJS request error:", error);
     }
 
-    if (error && !emailed) {
-      return { success: false, message: "Your message couldn't be saved. Please try again or email me directly." };
+    if (saved && emailed) {
+      return { success: true, message: "Message received. Thank you for getting in touch." };
     }
-    return { success: true, message: "Message received. Thank you for getting in touch." };
+    if (saved) {
+      return {
+        success: true,
+        message: "Your message was saved, but the email notification could not be sent. Thank you for getting in touch.",
+      };
+    }
+    if (emailed) {
+      return {
+        success: true,
+        message: "Your message was sent, but could not be saved to our database.",
+      };
+    }
+    return {
+      success: false,
+      message: "Your message could not be delivered right now. Please try again or email me directly.",
+    };
   });
