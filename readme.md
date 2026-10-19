@@ -57,7 +57,7 @@ My role connects client acquisition with technical understanding and commercial 
 
 ## Education
 
-- **Bachelor of Technology, Computer Science** — GITAM University, Bengaluru · 2016–2020 · **CGPA: 7.95/10**
+- **Bachelor of Technology, Computer Science** — GITAM University, Bengaluru · 2016–2020 · **CGPA: 7/10**
 - **Pre-University Course, PCMB** — Vidyadri PU College, Vijaypur · 2014–2016 · **72.16%**
 - **Secondary School** — The Crescent School, Sidlaghatta · 2014 · **85.6%**
 
