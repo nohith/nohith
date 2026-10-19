@@ -11,10 +11,11 @@ permissions:
 
 jobs:
   verify:
-    runs-on: ubuntu-latest
+    # Pin the supported Ubuntu LTS image instead of the moving ubuntu-latest label.
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
         with:
