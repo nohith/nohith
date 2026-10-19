@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ExperienceAdvisor } from "@/components/ExperienceAdvisor";
 import { contactSchema } from "@/lib/contact-schema";
 import { sendContactMessage } from "@/lib/contact.functions";
-import portrait from "@/assets/nohith-portrait.png.asset.json";
+import portrait from "@/assets/nohith-portrait.png";
 import vision from "@/assets/vision-project.jpg";
 import iot from "@/assets/iot-project.jpg";
 
@@ -56,7 +56,7 @@ function Portfolio() {
   <Button variant="ghost" size="icon" className="menu-toggle" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button>
  </div>{menuOpen && <nav className="mobile-menu" aria-label="Mobile navigation">{navigation.map(n => <Link to="/" hash={n.toLowerCase()} key={n} onClick={() => setMenuOpen(false)}>{n}</Link>)}</nav>}</header>
  <main>
- <img className="hero-photo" src={portrait.url} alt="Nohith Raj K — cinematic portrait with warm red rim lighting" width={1672} height={940} fetchPriority="high" />
+ <img className="hero-photo" src={portrait} alt="Nohith Raj K — cinematic portrait with warm red rim lighting" width={1672} height={940} fetchPriority="high" />
  <div className="hero-shade" />
  <section className="hero" id="home">
   <div className="hero-fade" /><div className="shell hero-content"><div className="hero-grid">
