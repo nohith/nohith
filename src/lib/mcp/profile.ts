@@ -18,7 +18,7 @@ export const profile = {
     { years: "2014", title: "Secondary School", school: "The Crescent School, Sidlaghatta", score: "85.6%" },
   ],
   experience: [{
-    role: "Business Sales Executive", company: "CODULAR", type: "Full-time",
+    role: "Business Sales Executive", company: "GLOBE INFOTECH PRIVATE LIMITED", type: "Full-time",
     responsibilities: ["Managing and scaling sales operations", "Qualifying incoming technical inquiries", "Understanding client requirements", "Communicating product capabilities", "Connecting requirements with technical execution", "Streamlining internal sales workflows", "Building sustainable client relationships", "Converting conversations into opportunities"],
   }],
   skills: {
